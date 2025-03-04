@@ -3,26 +3,26 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Respostas Juros simples e composto</title>
+    <title>Menor número</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   </head>
   <body>
-    <h4>Resposta do exercício 17-18</h4>
+    <h4>Resposta do exercício 1</h4>
     <?php
         if ($_SERVER['REQUEST_METHOD'] == 'POST'){
             try{
-            $preco = $_POST['preco'];
-            $taxa = $_POST['juros'];
-            $dias = $_POST['periodo'];
-            $op = $_POST['operador'];
-            switch ($op){
-                case 1:
-                    $novo = $preco + ($preco * $taxa / 100) * $dias;
-                case 2:
-                    $novo = $preco + ($preco * (1 + $taxa) / 100) * $dias;
-
-            }
-            echo "O novo preço é " . number_format($novo,2,',','.');
+                $menor = 0;
+                for ($i=1; $i<=7;$i++){
+                    $num[$i] = $_POST['valor'.$i];
+                    if ($menor == 0)
+                        $menor = $num[$i];
+                    
+                    else if ($num[$i] < $menor){
+                        $menor = $num[$i];
+                        $j = $i;
+                        }
+                }
+                echo "Menor número $menor está na posição $j";
             
             } catch(Exception $e){
                 echo $e->getMessage();
@@ -30,7 +30,7 @@
         }
     ?>
     <div class="col mt-2">
-         <button type="submit" class="btn btn-primary"><a href="17-18_capital.php" style="color: white; text-decoration: none;">Voltar</a></button>
+         <button type="submit" class="btn btn-primary"><a href="1_menor.php" style="color: white; text-decoration: none;">Voltar</a></button>
     </div>
 
 
